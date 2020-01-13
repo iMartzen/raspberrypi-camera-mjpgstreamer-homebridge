@@ -332,26 +332,26 @@ $ @reboot /home/pi/mjpg-streamer.sh start
 - Add to homebridge config: 
 
 ```json
-    "platforms": [
-        {
-            "name": "Camera ffmpeg",
-            "cameras": [
-                {
-                    "name": "Default Camera or <other name>" ,
-                    "videoConfig": {
-                        "source": "-re -f mjpeg -i http://<ip-or-dns-of-your-camera>:8080/?action=stream",
-                        "stillImageSource": "-f mjpeg -i http://<ip-or-dns-of-your-camera>:8080/?action=snapshot",
-                        "maxStreams": 4,
-                        "maxWidth": 640,
-                        "maxHeight": 480,
-                        "maxFPS": 10,
-                        "debug": true
-                    }
-                }
-            ],
-            "platform": "Camera-ffmpeg"
-        }
-    ],
+"platforms": [
+    {
+        "name": "Camera ffmpeg",
+        "cameras": [
+            {
+                "name": "Default Camera or <other name>" ,
+                "videoConfig": {
+                    "source": "-re -f mjpeg -i http://<ip-or-dns-of-your-camera>:8080/?action=stream",
+                    "stillImageSource": "-f mjpeg -i http://<ip-or-dns-of-your-camera>:8080/?action=snapshot",
+                    "maxStreams": 4,
+                    "maxWidth": 640,
+                    "maxHeight": 480,
+                    "maxFPS": 10,
+                    "debug": true
+                }
+            }
+        ],
+        "platform": "Camera-ffmpeg"
+    }   
+],
 ```
 
 # Add to Homekit: 
