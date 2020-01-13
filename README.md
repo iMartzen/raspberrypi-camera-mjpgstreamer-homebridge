@@ -349,7 +349,7 @@ $ @reboot /home/pi/mjpg-streamer.sh start
                 }
             }
         ],
-        "platform": "Camera-ffmpeg"
+        "platform": "Camera-ffmpeg"
     }   
 ],
 ```
