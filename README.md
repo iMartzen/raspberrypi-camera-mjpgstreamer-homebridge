@@ -357,6 +357,7 @@ $ @reboot /home/pi/mjpg-streamer.sh start
 # Add to Homekit: 
 - Click on ‘+’ 
 - Add accessory
+- Select your device in your the overview
 - Enter pin manually  
 - Pin is known in your homebridge instance 
 
