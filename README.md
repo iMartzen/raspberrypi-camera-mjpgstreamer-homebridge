@@ -84,7 +84,7 @@ $ echo '<public key>' > ~/.ssh/authorized_keys
 - Disable root login and password based login
 ```bash
 $ sudo sed -i 's/PermitRootLogin yes/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
-$ sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no' /etc/ssh/sshd_config
+$ sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 $ sudo sed -i 's/UsePAM yes/usePAM no/' /etc/ssh/sshd_config
 $ sudo sed -i 's/PrintMotd no/PrintMotd yes/' /etc/ssh/sshd_config 
 $ sudo /etc/init.d/ssh reload
@@ -172,7 +172,7 @@ RUNNING_CHECK_INTERVAL="2" # how often to check to make sure the server is runni
 HANGING_CHECK_INTERVAL="3" # how often to check to make sure the server is not hanging (in seconds)
 
 VIDEO_DEV="/dev/video0"
-FRAME_RATE="5"
+FRAME_RATE="30"
 QUALITY="80"
 RESOLUTION="1280x720"  # 160x120 176x144 320x240 352x288 424x240 432x240 640x360 640x480 800x448 800x600 960x544 1280x720 1920x1080 (QVGA, VGA, SVGA, WXGA)   #  lsusb -s 001:006 -v | egrep "Width|Height" # https://www.textfixer.com/tools/alphabetical-order.php  # v4l2-ctl --list-formats-ext  # Show Supported Video Formates
 PORT="8080"
@@ -323,8 +323,7 @@ $ @reboot /home/pi/mjpg-streamer.sh start
 ```
 
 # Add camera to homebridge: 
-- Ensure that homebridge included the package: ffmpeg
-    - To do this included in stack/compose file in the environment section: PACKAGES=ffmpeg (https://github.com/oznu/docker-homebridge#parameters)
+
 - Install plugin homebridge-camera-ffmpeg
     - Click on 'plugin'
     - Search for homebridge-camera-ffmpeg
@@ -341,16 +340,17 @@ $ @reboot /home/pi/mjpg-streamer.sh start
                 "videoConfig": {
                     "source": "-re -f mjpeg -i http://<ip-or-dns-of-your-camera>:8080/?action=stream",
                     "stillImageSource": "-f mjpeg -i http://<ip-or-dns-of-your-camera>:8080/?action=snapshot",
-                    "maxStreams": 4,
-                    "maxWidth": 640,
-                    "maxHeight": 480,
-                    "maxFPS": 10,
-                    "debug": true
+                    "maxStreams": 2,
+                    "maxWidth": 1280,
+                    "maxHeight": 720,
+                    "maxFPS": 30,
+                    "debug": false,
+                    "audio": false,
+                    "motion": false
                 }
             }
-        ],
-        "platform": "Camera-ffmpeg"
-    }   
+        ]
+    }
 ],
 ```
 
